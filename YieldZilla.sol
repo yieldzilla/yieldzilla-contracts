@@ -652,11 +652,11 @@ contract YieldZilla is ERC20Detailed, Ownable {
         if (deltaTimeFromInit < (365 days)) {
             rebaseRate = 2604;
         } else if (deltaTimeFromInit >= (7 * 365 days)) {
-            rebaseRate = 3;
+            rebaseRate = 2;
         } else if (deltaTimeFromInit >= ((15 * 365 days) / 10)) {
-            rebaseRate = 24;
+            rebaseRate = 14;
         } else {
-            rebaseRate = 260;
+            rebaseRate = 211;
         }
 
         for (uint256 i = 0; i < times; i++) {
