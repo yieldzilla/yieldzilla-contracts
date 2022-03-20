@@ -573,11 +573,12 @@ contract YieldZilla is ERC20Detailed, Ownable {
 
     address constant DEAD = 0x000000000000000000000000000000000000dEaD;
     address constant ZERO = 0x0000000000000000000000000000000000000000;
+    address public constant blackHole =
+        0x0deaDBEEf00deadBeEf00DEADBEef00DeAdBeEf0;
 
     address public autoLiquidityReceiver;
     address public treasuryReceiver;
     address public yieldzillaInsuranceFundReceiver;
-    address public blackHole;
     address public pairAddress;
     IPancakeSwapRouter public router;
     address public pair;
@@ -609,8 +610,7 @@ contract YieldZilla is ERC20Detailed, Ownable {
     constructor(
         address _autoLiquidityReceiver,
         address _treasuryReceiver,
-        address _yieldzillaInsuranceFundReceiver,
-        address _blackHole
+        address _yieldzillaInsuranceFundReceiver
     ) ERC20Detailed("YieldZilla", "YDZ", uint8(DECIMALS)) Ownable() {
         router = IPancakeSwapRouter(0x10ED43C718714eb63d5aA57B78B54704E256024E);
         pair = IPancakeSwapFactory(router.factory()).createPair(
@@ -621,7 +621,6 @@ contract YieldZilla is ERC20Detailed, Ownable {
         autoLiquidityReceiver = _autoLiquidityReceiver;
         treasuryReceiver = _treasuryReceiver;
         yieldzillaInsuranceFundReceiver = _yieldzillaInsuranceFundReceiver;
-        blackHole = _blackHole;
 
         _allowedFragments[address(this)][address(router)] = uint256(-1);
         pairAddress = pair;
@@ -1008,13 +1007,11 @@ contract YieldZilla is ERC20Detailed, Ownable {
     function setFeeReceivers(
         address _autoLiquidityReceiver,
         address _treasuryReceiver,
-        address _yieldzillaInsuranceFundReceiver,
-        address _blackHole
+        address _yieldzillaInsuranceFundReceiver
     ) external onlyOwner {
         autoLiquidityReceiver = _autoLiquidityReceiver;
         treasuryReceiver = _treasuryReceiver;
         yieldzillaInsuranceFundReceiver = _yieldzillaInsuranceFundReceiver;
-        blackHole = _blackHole;
     }
 
     function getLiquidityBacking(uint256 accuracy)
