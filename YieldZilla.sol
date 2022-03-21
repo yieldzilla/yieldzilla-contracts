@@ -1033,7 +1033,7 @@ contract YieldZilla is ERC20Detailed, Ownable {
     {
         require(
             isContract(_botAddress),
-            "only contract address, not allowed exteranlly owned account"
+            "only contract address, not allowed externally owned account"
         );
         blacklist[_botAddress] = _flag;
     }
