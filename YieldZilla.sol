@@ -607,20 +607,19 @@ contract YieldZilla is ERC20Detailed, Ownable {
     mapping(address => mapping(address => uint256)) private _allowedFragments;
     mapping(address => bool) public blacklist;
 
-    constructor(
-        address _autoLiquidityReceiver,
-        address _treasuryReceiver,
-        address _yieldzillaInsuranceFundReceiver
-    ) ERC20Detailed("YieldZilla", "YDZ", uint8(DECIMALS)) Ownable() {
+    constructor()
+        ERC20Detailed("YieldZilla", "YDZ", uint8(DECIMALS))
+        Ownable()
+    {
         router = IPancakeSwapRouter(0x10ED43C718714eb63d5aA57B78B54704E256024E);
         pair = IPancakeSwapFactory(router.factory()).createPair(
             router.WETH(),
             address(this)
         );
 
-        autoLiquidityReceiver = _autoLiquidityReceiver;
-        treasuryReceiver = _treasuryReceiver;
-        yieldzillaInsuranceFundReceiver = _yieldzillaInsuranceFundReceiver;
+        autoLiquidityReceiver = 0xa03E40ADd3003343cea50C725d5bA2Eb4D10B9f1;
+        treasuryReceiver = 0x3BAF2d0436Abd59c98e960b397011bA23a139329;
+        yieldzillaInsuranceFundReceiver = 0x027f31eF3bD07A9631AEC471728fdA178d162753;
 
         _allowedFragments[address(this)][address(router)] = uint256(-1);
         pairAddress = pair;
