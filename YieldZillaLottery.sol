@@ -10,10 +10,10 @@ import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 
 contract YieldZillaLottery is VRFConsumerBaseV2, Ownable, Pausable {
     VRFCoordinatorV2Interface COORDINATOR;
-    uint64 s_subscriptionId = 431;
-    address vrfCoordinator = 0x6A2AAd07396B36Fe02a22b33cf443582f682c82f;
+    uint64 s_subscriptionId = 60;
+    address vrfCoordinator = 0xc587d9053cd1118f25F645F9E08BB98c9712A4EE;
     bytes32 keyHash =
-        0xd4bb89654db74673a187bd804519e65e3f71a52bc55f11da7601a13dcf505314;
+        0x114f3da0a805b6a67d6e9cd2ec746f7028f1b7376365af575cfea3550dd1aa04;
     uint32 callbackGasLimit = 50000;
     uint16 requestConfirmations = 3;
     uint32 numWords = 1;
@@ -28,7 +28,7 @@ contract YieldZillaLottery is VRFConsumerBaseV2, Ownable, Pausable {
 
     address[] public players;
 
-    address public tokenAddress = 0xd9bf3776c5E110e621d1A3Ae43FD59801290e547;
+    address public tokenAddress = 0x22Ffa75b746602427203d7Aa3f9Dc2b8af6dFc8A;
     IERC20 token;
 
     address public marketingAddress =
